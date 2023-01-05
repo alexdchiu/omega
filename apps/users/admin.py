@@ -40,11 +40,14 @@ class UserAdmin(BaseUserAdmin):
     ),
   )
   add_fieldsets = (
-    (None, {
-      'classes': ('wide',),
-      'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active',)
-    })
-  )
+        (
+            None,
+            {
+                'classes': ('wide',),
+                'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active'),
+            },
+        ),
+    )
   search_fields = ['email', 'username', 'first_name', 'last_name']
 
 admin.site.register(User, UserAdmin)
