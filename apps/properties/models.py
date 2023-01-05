@@ -36,12 +36,18 @@ class Property(TimeStampedUUIDModel):
     COMMERCIAL = 'Commercial', _('Commercial')
     OTHER = 'Other', _('Other')
   
-  user = models.ForeignKey(User, verbose_name=_('Agent, Seller or Buyer'), related_name='agent_buyer', on_delete=models.DO_NOTHING),
+  user = models.ForeignKey(
+    User, 
+    verbose_name=_('Agent, Seller or Buyer'), 
+    related_name='agent_buyer', 
+    on_delete=models.DO_NOTHING
+  )
+
   title = models.CharField(verbose_name=_('Property Title'), max_length=250)
   slug = AutoSlugField(populate_from='title', unique=True, always_update=True)
   ref_code = models.CharField(verbose_name=_('Property Reference Code'), max_length=255, unique=True, blank=True)
   description = models.TextField(verbose_name=_('Description'), default='Default description...')
-  country = CountryField(verbose_name=_('Country'), default='USA', blank_label='(select country)',)
+  country = CountryField(verbose_name=_('Country'), default='Taiwan', blank_label='(select country)',)
   city = models.CharField(verbose_name=_('City'), max_length=180, default='New York')
   postal_code = models.CharField(verbose_name=_('Postal Code'), max_length=150, default='00000')
   street_address = models.CharField(verbose_name=_('Street Address'), max_length=150, default='100 5th Ave')
@@ -55,10 +61,10 @@ class Property(TimeStampedUUIDModel):
   advert_type = models.CharField(verbose_name=_('Advert Type'), max_length=50, choices=AdvertType.choices, default=AdvertType.FOR_SALE)
   property_type = models.CharField(verbose_name=_('Property Type'), max_length=50, choices=PropertyType.choices, default=PropertyType.OTHER)
   cover_photo = models.ImageField(verbose_name=_('Main Photo'), default='/house_sample.jpg', null=True, blank=True)
-  photo1 = models.ImageField(verbose_name=_('Main Photo'), default='/interior_sample.jpg', null=True, blank=True)
-  photo2 = models.ImageField(verbose_name=_('Main Photo'), default='/interior_sample.jpg', null=True, blank=True)
-  photo3 = models.ImageField(verbose_name=_('Main Photo'), default='/interior_sample.jpg', null=True, blank=True)
-  photo4 = models.ImageField(verbose_name=_('Main Photo'), default='/interior_sample.jpg', null=True, blank=True)
+  photo1 = models.ImageField(verbose_name=_('Photo1'), default='/interior_sample.jpg', null=True, blank=True)
+  photo2 = models.ImageField(verbose_name=_('Photo2'), default='/interior_sample.jpg', null=True, blank=True)
+  photo3 = models.ImageField(verbose_name=_('Photo3'), default='/interior_sample.jpg', null=True, blank=True)
+  photo4 = models.ImageField(verbose_name=_('Photo4'), default='/interior_sample.jpg', null=True, blank=True)
   published_status = models.BooleanField(verbose_name=_('Published Status'), default=False)
   views = models.IntegerField(verbose_name=_('Total Views'), default=0)
 
@@ -74,7 +80,7 @@ class Property(TimeStampedUUIDModel):
   
   def save(self, *args, **kwargs):
     self.title = str.title(self.title)
-    self.description = str.description(self.description)
+    self.description = str.capitalize(self.description)
     self.ref_code = "".join(random.choices(string.ascii_uppercase + string.digits, k=10))
     super(Property, self).save(*args, **kwargs)
   
