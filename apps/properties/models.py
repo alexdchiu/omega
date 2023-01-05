@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django_countries import CountryField
+from django_countries.fields import CountryField
 from apps.common.models import TimeStampedUUIDModel
 
 # Create your models here.
@@ -39,7 +39,7 @@ class Property(TimeStampedUUIDModel):
   user = models.ForeignKey(User, verbose_name=_('Agent, Seller or Buyer'), related_name='agent_buyer', on_delete=models.DO_NOTHING),
   title = models.CharField(verbose_name=_('Property Title'), max_length=250)
   slug = AutoSlugField(populate_from='title', unique=True, always_update=True)
-  ref_code = models.CharField(verbose_name=_('Property Reference Code'), max_length=255, unqiue=True, blank=True)
+  ref_code = models.CharField(verbose_name=_('Property Reference Code'), max_length=255, unique=True, blank=True)
   description = models.TextField(verbose_name=_('Description'), default='Default description...')
   country = CountryField(verbose_name=_('Country'), default='USA', blank_label='(select country)',)
   city = models.CharField(verbose_name=_('City'), max_length=180, default='New York')
