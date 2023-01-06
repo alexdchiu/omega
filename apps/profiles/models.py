@@ -20,7 +20,7 @@ class Profile(TimeStampedUUIDModel):
   license = models.CharField(verbose_name=_('Real Estate License'), max_length=20, blank=True, null=True)
   profile_photo = models.ImageField(verbose_name=_('Profile Photo'), default='/profile_default.png')
   gender = models.CharField(verbose_name=_('Gender'), choices=Gender.choices, default=Gender.OTHER, max_length=20)
-  country = CountryField(verbose_name=_('Country'), default='USA', blank=False, null=False)
+  country = CountryField(verbose_name=_('Country'), default='United States of America', blank=False, null=False)
   city = models.CharField(verbose_name=_('City'), max_length=180, default='New York', blank=False, null=False)
   is_buyer = models.BooleanField(verbose_name=_('Buyer'), default=False, help_text=_('Are you looking to buy a property?'))
   is_seller = models.BooleanField(verbose_name=_('Seller'), default=False, help_text=_('Are you looking to sell a property?'))
