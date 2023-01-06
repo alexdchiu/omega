@@ -31,9 +31,22 @@ RUN sed -i 's/\r$//g' /entrypoint
 # process any line ending with shell script
 RUN chmod +x /entrypoint
 
+
 COPY ./docker/local/django/start /start
 RUN sed -i 's/\r$//g' /start
 # process any line ending with shell script
 RUN chmod +x /start
+
+
+COPY ./docker/local/django/celery/worker/start /start-celeryworker
+RUN sed -i 's/\r$//g' /start-celeryworker
+# process any line ending with shell script
+RUN chmod +x /start-celeryworker
+
+
+COPY ./docker/local/django/celery/flower/start /start-flower
+RUN sed -i 's/\r$//g' /start-flower
+# process any line ending with shell script
+RUN chmod +x /start-flower
 
 ENTRYPOINT [ "/entrypoint" ]
