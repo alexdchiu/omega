@@ -19,6 +19,17 @@ services:
       - redis
     networks:
       - estate-react
+  
+  front-end:
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile.dev
+    restart: on-failure
+    volumes:
+      - ./front-end:/app
+      - /app/node_modules
+    networks:
+      - estate-react
 
   postgres-db:
     image: postgres:12.0-alpine
