@@ -15,7 +15,7 @@ const Property = ({property}) => {
         {property.advert_type}
       </Badge>
       <Link to={`/property/${property.slug}`}>
-        <Card.Img src={property.cover_photo} variant='top' />
+        <Card.Img src={property.cover_photo} variant='top' width='175' height='200' />
       </Link>
       <Card.Title className='property-price'>
         ${numberWithCommas(Number(property.price))}

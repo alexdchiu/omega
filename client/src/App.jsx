@@ -11,6 +11,7 @@ import { Toast } from 'react-bootstrap';
 import LoginPage from './pages/LoginPage';
 import ActivatePage from './pages/ActivatePage'
 import RegisterPage from './pages/RegisterPage'
+import PropertyDetailPage from './pages/PropertyDetailPage';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/properties' element={<PropertiesPage />} />
+            <Route path='/property/:slug' element={<PropertyDetailPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/activate/:uid/:token' element={<ActivatePage />} />
