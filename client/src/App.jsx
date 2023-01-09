@@ -8,6 +8,7 @@ import NotFound from './components/NotFound'
 import HomePage from './pages/HomePage'
 import PropertiesPage from './pages/PropertiesPage'
 import { Toast } from 'react-bootstrap';
+import LoginPage from './pages/LoginPage';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/properties' element={<PropertiesPage />} />
+            <Route path='/login' element={<LoginPage />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
           <ToastContainer theme='dark' />
