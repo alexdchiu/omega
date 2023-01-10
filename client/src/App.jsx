@@ -12,6 +12,7 @@ import LoginPage from './pages/LoginPage';
 import ActivatePage from './pages/ActivatePage'
 import RegisterPage from './pages/RegisterPage'
 import PropertyDetailPage from './pages/PropertyDetailPage';
+import PropertyCreatePage from './pages/PropertyCreatePage';
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
             <Route path='/' element={<HomePage />} />
             <Route path='/properties' element={<PropertiesPage />} />
             <Route path='/property/:slug' element={<PropertyDetailPage />} />
+            <Route path='/property/create' element={<PropertyCreatePage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/activate/:uid/:token' element={<ActivatePage />} />

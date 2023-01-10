@@ -60,7 +60,7 @@ class Property(TimeStampedUUIDModel):
   bathrooms = models.DecimalField(verbose_name=_('Bathrooms'), max_digits=4, decimal_places=2, default=0.00)
   advert_type = models.CharField(verbose_name=_('Advert Type'), max_length=50, choices=AdvertType.choices, default=AdvertType.FOR_SALE)
   property_type = models.CharField(verbose_name=_('Property Type'), max_length=50, choices=PropertyType.choices, default=PropertyType.OTHER)
-  cover_photo = models.ImageField(verbose_name=_('Main Photo'), default='/house_sample.jpg', null=True, blank=True)
+  cover_photo = models.ImageField(verbose_name=_('Main Photo'), default='../../client/sample_images/house_sample.jpg', null=True, blank=True)
   photo1 = models.ImageField(verbose_name=_('Photo1'), default='/interior_sample.jpg', null=True, blank=True)
   photo2 = models.ImageField(verbose_name=_('Photo2'), default='/interior_sample.jpg', null=True, blank=True)
   photo3 = models.ImageField(verbose_name=_('Photo3'), default='/interior_sample.jpg', null=True, blank=True)

@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react'
-import { Col,Container,Row } from 'react-bootstrap'
+import { Col,Container,Row,Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Spinner from '../components/Spinner'
 import {toast} from 'react-toastify'
 import Property from '../components/Property'
 import { getProperties, reset } from  '../features/properties/propertySlice.js'
 import Title from '../components/Title'
+import { Link } from 'react-router-dom'
 
 const PropertiesPage = () => {
   const {properties,isLoading,isError, message} = useSelector((state) => state.properties)
@@ -33,6 +34,13 @@ const PropertiesPage = () => {
             <hr className='hr-text' />
           </Col>
         </Row>
+        <Row>
+        <Link to={`/property/create`}>
+          <Button variant='secondary'>
+            List a New Property
+          </Button>
+        </Link>
+      </Row>
         {
           <>
             <Row className='mt-3'>

@@ -31,6 +31,29 @@ export const getProperties = createAsyncThunk(
 	}
 );
 
+
+// CREATE NEW PROPERTY
+export const createProperty = createAsyncThunk(
+	"properties/create",
+	async (data, thunkAPI) => {
+		const {propertyData, token} = data
+		try {
+			return await propertyAPIService.createProperty(propertyData, token)
+		} catch (error) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+)
+
+
+
 export const propertySlice = createSlice({
 	name: "property",
 	initialState,
@@ -51,9 +74,25 @@ export const propertySlice = createSlice({
 				state.isLoading = false;
 				state.isError = true;
 				state.message = action.payload;
-			});
+			})
+
+			.addCase(createProperty.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(createProperty.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+				state.propertyCreated = true
+      })
+      .addCase(createProperty.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+        state.user = null
+      })
 	},
 });
+
 
 export const { reset } = propertySlice.actions;
 export default propertySlice.reducer;
