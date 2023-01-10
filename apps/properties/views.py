@@ -116,7 +116,6 @@ def update_property_api_view(request, slug):
 @api_view(['POST'])
 @permission_classes([permissions.IsAuthenticated])
 def create_property_api_view(request):
-  print('REQUEST!!!!', request.data)
   user = request.user
   data = request.data
   data['user'] = request.user.pkid
